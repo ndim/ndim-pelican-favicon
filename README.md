@@ -27,7 +27,8 @@ Configuration
     For every PNG file `foo.png`, generate a file `foo@2x.png` with
     twice the resolution.
 
-Stock Pelican configuration variables also used by `ndim-pelican-favicon`:
+The following stock Pelican configuration variables also used by
+`ndim-pelican-favicon`:
 
   * `PATH`
 
@@ -37,8 +38,10 @@ Stock Pelican configuration variables also used by `ndim-pelican-favicon`:
 
     Location of the output files.
 
-Other settings which need to work together with the `FAVICON_*`
-settings:
+There are other settings which need to work together with the
+`FAVICON_*` settings, and you have to set them manually in
+`pelicanconf.py`. We suggest explicitly setting `FAVICON_OUTPUT_PATH`
+in `pelicanconf.py` and then copy the following definitions:
 
     SITELOGO   = FAVICON_OUTPUT_PATH + '/' + 'favicon.png'
     FAVICON    = FAVICON_OUTPUT_PATH + '/' + 'favicon.png'
