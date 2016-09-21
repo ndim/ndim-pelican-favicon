@@ -32,19 +32,19 @@ Configuration
 
 `ndim_pelican_favicon` defines a few new Pelican settings:
 
-  * `FAVICON_SVG_SOURCE` (default: `'favicon.svg'`)
+  * `FAVICON_SVG_SOURCE` (default value: `'favicon.svg'`)
 
     Location of the source SVG file with the favicon,
     relative to `PATH`.
 
-  * `FAVICON_OUTPUT_PATH` (default: `'favicon'`)
+  * `FAVICON_OUTPUT_PATH` (default value: `'favicon'`)
 
     Path to put the generated images to, relative to `OUTPUT_PATH`.
 
     The one exception is the favicon.ico file which is by convention
     looked for and thus stored in `OUTPUT_PATH` directly.
 
-  * `FAVICON_DOUBLE_RES` (default: `True`)
+  * `FAVICON_DOUBLE_RES` (default value: `True`)
 
     For every PNG file `foo.png`, generate a file `foo@2x.png` with
     twice the resolution.
@@ -77,16 +77,20 @@ something equivalently:
 TODOs and BUGs
 --------------
 
-  * The use of `pngcrush` could and should be made optional, and
-    `optipng` made an alternative. Or perhaps we should leave
-    optimizing PNG image files to a separate plugin?
+  * The use of [`pngcrush`](http://pmt.sourceforge.net/pngcrush/)
+    could and should be made optional, and
+    [`optipng`](http://optipng.sourceforge.net/) made an
+    alternative. Or perhaps we should leave optimizing PNG image files
+    to a separate plugin?
 
-  * We could use `cairosvg` or a custom `pycairo` based method to
-    convert the SVG file into PNG files without running an external
-    tool like `inkscape`.
+  * We could use [`cairosvg`](http://pypi.python.org/pypi/CairoSVG) or
+    a custom [`pycairo`](http://cairographics.org/pycairo) based
+    method to convert the SVG file into PNG files without running an
+    external tool like [`inkscape`](http://inkscape.sourceforge.net/).
 
-  * There may be a Python library to generate ICO files (pillow?)
-    which could allow us to avoid running the external `icotool` tool.
+  * There may be a Python library to generate ICO files (`pillow`?)
+    which could allow us to avoid running the external
+    [`icotool`](http://www.nongnu.org/icoutils/) tool.
 
   * The way we run the external tools appears to rely on `subprocess`
     features introduced in Python 3.3.
@@ -96,11 +100,11 @@ TODOs and BUGs
   * Using `print(…)` to print debug output and the `logging` module is
     done inconsistently, to say the least.
 
-  * There is no test suite yet.
+  * There is no test suite yet (neither test code nor test data).
 
   * Test the favicon usage in Pelican themes other than
-    `pelican-bootstrap3` and how `ndim_pelican_favicon` can help
-    there.
+    `pelican-bootstrap3` and find out how `ndim_pelican_favicon` can
+    help there.
 
 There are probably more problems, but this should be a good list to
 start with.
