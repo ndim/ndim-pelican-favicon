@@ -106,7 +106,7 @@ TODOs and BUGs
   * Using `print(…)` to print debug output and the `logging` module is
     done inconsistently, to say the least.
 
-  * There is no test suite yet (neither test code nor test data).
+  * Properly hook the unittests into the pelican-plugins test suite.
 
   * Test the favicon usage in Pelican themes other than
     `pelican-bootstrap3` and find out how `ndim_pelican_favicon` can

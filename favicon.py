@@ -90,24 +90,42 @@ class ICOTarget(ndimake.FileConverter):
 
 class FaviconGenerator(Generator):
 
+    def __str__(self):
+        fmt = ("%s("
+               "FAVICON_SVG_SOURCE=%s,"
+               "FAVICON_OUTPUT_PATH=%s,"
+               "FAVICON_DOUBLE_RES=%s,"
+               "PATH=%s,"
+               "OUTPUT_PATH=%s,"
+               "path=%s,"
+               "output_path=%s"
+               ")")
+        return fmt % (self.__class__.__name__,
+                      repr(self.favicon_svg_source_fpath),
+                      repr(self.favicon_output_path),
+                      repr(self.favicon_double_res),
+                      repr(self.settings['PATH']),
+                      repr(self.settings['OUTPUT_PATH']),
+                      repr(self.path),
+                      repr(self.output_path))
+
     def __init__(self, *args, **kwargs):
         # We do not care about the constructor arguments, we just need
         # to pass them on.
         super(FaviconGenerator, self).__init__(*args, **kwargs)
 
         # Retrieve settings
-        self.svg_source_fpath = self.settings.get('FAVICON_SVG_SOURCE',
-                                                  'favicon.svg')
-        self.output_path = self.settings.get('FAVICON_OUTPUT_PATH',
-                                             'favicon')
-        self.double_res = self.settings.get('FAVICON_DOUBLE_RES', True)
+        self.favicon_svg_source_fpath = self.settings.get('FAVICON_SVG_SOURCE',
+                                                          'favicon.svg')
+        self.favicon_output_path = self.settings.get('FAVICON_OUTPUT_PATH',
+                                                     'favicon')
+        self.favicon_double_res = self.settings.get('FAVICON_DOUBLE_RES', True)
 
-        src_path = self.settings['PATH']
-        svg_srcfile  = ndimake.SourceFile(os.path.join(src_path, self.svg_source_fpath))
+        svg_srcfile  = ndimake.SourceFile(os.path.join(self.path,
+                                                       self.favicon_svg_source_fpath))
 
-        dst_path = self.settings['OUTPUT_PATH']
         def tjoin(fname):
-            return os.path.join(dst_path, self.output_path, fname)
+            return os.path.join(self.output_path, self.favicon_output_path, fname)
 
         # Compose list of targets
         targets = []
@@ -116,12 +134,13 @@ class FaviconGenerator(Generator):
         ico_png_list = [ SVG2PNG(tjoin('favicon-%dx%d.png' % (sz, sz)),
                                  svg_srcfile, sz)
                          for sz in ico_sizes ]
-        targets.append(ICOTarget(os.path.join(dst_path, 'favicon.ico'), ico_png_list))
+        targets.append(ICOTarget(os.path.join(self.output_path, 'favicon.ico'),
+                                 ico_png_list))
 
         targets.append(SVG2PNG(tjoin('favicon.png'), svg_srcfile, 196))
         targets.append(SVG2PNG(tjoin('apple-touch-icon.png'), svg_srcfile, 180))
 
-        if self.double_res:
+        if self.favicon_double_res:
             targets.append(SVG2PNG(tjoin('favicon@2x.png'), svg_srcfile, 392))
             targets.append(SVG2PNG(tjoin('apple-touch-icon@2x.png'), svg_srcfile, 360))
 
