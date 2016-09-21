@@ -9,8 +9,14 @@ These bitmap files can then be used in the Pelican theme's definition
 of the HTML `<head>` element for proper integration into browser
 bookmarks, smartphone touch icons, etc.
 
-You can find the `ndim_pelican_favicon` source code on
-[ndim's `ndim_pelican_favicon` repository page on github](https://github.com/ndim/ndim_pelican_favicon).
+You can find the `ndim_pelican_favicon` source code at
+[`https://github.com/ndim/ndim_pelican_favicon`](https://github.com/ndim/ndim_pelican_favicon).
+
+
+License
+-------
+
+`ndim_pelican_favicon` is licensed under a [MIT License](LICENSE).
 
 
 Requirements
@@ -24,7 +30,7 @@ independently.
 
 `ndim_pelican_favicon` has been developed and tested on a on Fedora 24
 Linux systems with Python 3.5 using Pelican 3.6.3 and the
-`pelican-bootstrp3` theme.
+`pelican-bootstrap3` theme.
 
 
 Configuration
@@ -41,7 +47,7 @@ Configuration
 
     Path to put the generated images to, relative to `OUTPUT_PATH`.
 
-    The one exception is the favicon.ico file which is by convention
+    The one exception is the `favicon.ico` file which is by convention
     looked for and thus stored in `OUTPUT_PATH` directly.
 
   * `FAVICON_DOUBLE_RES` (default value: `True`)
