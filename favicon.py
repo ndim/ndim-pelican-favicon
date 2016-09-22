@@ -96,25 +96,6 @@ class FaviconGenerator(Generator):
 
     """Pelican Generator generating favicon bitmap files from SVG favicon"""
 
-    def __str__(self):
-        fmt = ("%s("
-               "FAVICON_SVG_SOURCE=%s,"
-               "FAVICON_OUTPUT_PATH=%s,"
-               "FAVICON_DOUBLE_RES=%s,"
-               "PATH=%s,"
-               "OUTPUT_PATH=%s,"
-               "path=%s,"
-               "output_path=%s"
-               ")")
-        return fmt % (self.__class__.__name__,
-                      repr(self.favicon_svg_source_fpath),
-                      repr(self.favicon_output_path),
-                      repr(self.favicon_double_res),
-                      repr(self.settings['PATH']),
-                      repr(self.settings['OUTPUT_PATH']),
-                      repr(self.path),
-                      repr(self.output_path))
-
     def __init__(self, *args, **kwargs):
         # We do not care about the constructor arguments, we just need
         # to pass them on.
@@ -151,6 +132,21 @@ class FaviconGenerator(Generator):
             targets.append(SVG2PNG(tjoin('apple-touch-icon@2x.png'), svg_srcfile, 360))
 
         self.target = ndimake.VirtualTarget(targets)
+
+    def __str__(self):
+        fmt = ("%s("
+               "FAVICON_SVG_SOURCE=%s,"
+               "FAVICON_OUTPUT_PATH=%s,"
+               "FAVICON_DOUBLE_RES=%s,"
+               "path=%s,"
+               "output_path=%s"
+               ")")
+        return fmt % (self.__class__.__name__,
+                      repr(self.favicon_svg_source_fpath),
+                      repr(self.favicon_output_path),
+                      repr(self.favicon_double_res),
+                      repr(self.path),
+                      repr(self.output_path))
 
     def generate_context(self):
         """Pelican plugin interface method"""
