@@ -148,12 +148,12 @@ class FaviconGenerator(Generator):
 
     def generate_context(self):
         """Pelican plugin interface method"""
-        # print("%s generate_context" % self.__class__.__name__)
-        pass
+        logger.debug("%s generate_context", self.__class__.__name__)
 
     def generate_output(self, writer=None):
         """Pelican plugin interface method"""
-        # print("%s generate_output %s" % (self.__class__.__name__, writer))
+        logger.debug("%s generate_output %s",
+                     self.__class__.__name__, writer)
         self.target.update()
 
 

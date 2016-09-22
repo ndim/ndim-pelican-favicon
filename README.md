@@ -99,9 +99,6 @@ TODOs and BUGs
 
   * Does our Python code run in Python 2?
 
-  * Using `print(…)` to print debug output and the `logging` module is
-    done inconsistently, to say the least.
-
   * Properly hook the unittests into the pelican-plugins test suite.
 
   * Test the favicon usage in Pelican themes other than

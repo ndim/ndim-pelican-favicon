@@ -39,7 +39,7 @@ import subprocess
 
 def sh(*cmdline):
     """Run an external command without involving the shell"""
-    print("Running command:", cmdline)
+    logger.info("Running command: %s", cmdline)
     subprocess.run(cmdline, stdin=subprocess.DEVNULL,
                    shell=False, timeout=120, check=True)
 
