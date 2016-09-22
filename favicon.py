@@ -39,6 +39,9 @@ logger = logging.getLogger(__name__)
 import os
 
 
+from PIL import Image
+
+
 from . import ndimake
 
 
@@ -54,6 +57,24 @@ class SVG2PNG(ndimake.FileConverter):
     @property
     def dependencies(self):
         return [ self.svg_file ]
+
+    def dirty(self):
+        if super(SVG2PNG, self).dirty():
+            return True
+
+        # Check whether this rule would generate the same image
+        # format and dimensions as the existing image file has.
+        im = Image.open(self.file_path)
+        if (self.sz, self.sz) != im.size:
+            logger.debug("existing file %s has im.size %s (should be %s)",
+                         self.file_path, im.size, (self.sz, self.sz))
+            return True
+        if im.format != 'PNG':
+            logger.debug("existing file %s has im.format %s (should be %s)",
+                         self.file_path, im.format, 'PNG')
+            return True
+
+        return False
 
     def do_update(self):
         # We could try to do this without running external programs
