@@ -44,6 +44,8 @@ from . import ndimake
 
 class SVG2PNG(ndimake.FileConverter):
 
+    """Convert an SVG image to an PNG image"""
+
     def __init__(self, file_path, svg_file, sz):
         super(SVG2PNG, self).__init__(file_path)
         self.svg_file = svg_file
@@ -72,6 +74,8 @@ class SVG2PNG(ndimake.FileConverter):
 
 class ICOTarget(ndimake.FileConverter):
 
+    """Generate ICO file from a number of PNG bitmaps"""
+
     def __init__(self, file_path, png_sources):
         super(ICOTarget, self).__init__(file_path)
         self.png_sources = png_sources
@@ -89,6 +93,8 @@ class ICOTarget(ndimake.FileConverter):
 
 
 class FaviconGenerator(Generator):
+
+    """Pelican Generator generating favicon bitmap files from SVG favicon"""
 
     def __str__(self):
         fmt = ("%s("
@@ -158,4 +164,5 @@ class FaviconGenerator(Generator):
 
 
 def sig_get_generators(generators):
+    """Signal handler to be registered with Pelican"""
     return FaviconGenerator

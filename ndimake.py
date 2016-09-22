@@ -116,11 +116,11 @@ class SourceFile(MakeTarget):
 
     @property
     def dependencies(self):
-        """A source file has not extra dependencies but itself"""
+        """A source file by definition has no dependencies"""
         return []
 
     def dirty(self):
-        """We cannot be dirty - but the file MUST exist"""
+        """We CANNOT be dirty - but the file MUST exist"""
         if os.path.exists(self.file_path):
             return False
         else:
@@ -170,9 +170,13 @@ class Hardlink(FileConverter):
 
 class VirtualTarget(FileConverter):
 
-    """non-file target which just remakes all its dependencies"""
+    """non-file target which just remakes all its dependencies
+
+    Similar to make's `.PHONY: foo` targets.
+    """
 
     def __init__(self, deps):
+        """Choose some unique string as file_path"""
         super(VirtualTarget, self).__init__("virtual-target-%x" % hash(self))
         self.__deps = deps
 
