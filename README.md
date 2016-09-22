@@ -94,10 +94,6 @@ TODOs and BUGs
     method to convert the SVG file into PNG files without running an
     external tool like [`inkscape`](http://inkscape.sourceforge.net/).
 
-  * There may be a Python library to generate ICO files (`pillow`?)
-    which could allow us to avoid running the external
-    [`icotool`](http://www.nongnu.org/icoutils/) tool.
-
   * The way we run the external tools appears to rely on `subprocess`
     features introduced in Python 3.3.
 
@@ -111,6 +107,17 @@ TODOs and BUGs
   * Test the favicon usage in Pelican themes other than
     `pelican-bootstrap3` and find out how `ndim_pelican_favicon` can
     help there.
+
+  * While Pillow (`PIL`) is a Python library which can generate ICO
+    files, it has difficulties generating ICO files which
+
+      * contain more than one image
+
+      * contain those images as uncompressed BMP data instead of
+        compressed complete PNG dumps
+
+    [`icotool`](http://www.nongnu.org/icoutils/) can do these things,
+    so we will stay with `icotool` for a while.
 
 There are probably more problems, but this should be a good list to
 start with.
