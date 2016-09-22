@@ -108,6 +108,9 @@ TODOs and BUGs
     `pelican-bootstrap3` and find out how `ndim_pelican_favicon` can
     help there.
 
+  * Figure out how to add more hi-res bitmaps for Windows Tiles, for
+    Apple stuff, or maybe even (_gasp_) just SVG vector graphics?
+
   * While Pillow (`PIL`) is a Python library which can generate ICO
     files, it has difficulties generating ICO files which
 
